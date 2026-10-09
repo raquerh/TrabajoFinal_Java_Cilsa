@@ -1,24 +1,23 @@
 import java.util.Scanner;
-import java.util.ArrayList;
 
 public class Main {
     public static void main(String[] args) {
         Scanner lector = new Scanner(System.in);
-        ArrayList<Piloto> pilotos = new ArrayList<>();
+        GestorPilotos gestor = new GestorPilotos();
         int opcion;
 
         
-        /*pilotos.add(new Piloto("Andrea Kimi Antonelli", 12, "Mercedes", "Italia", 20, 1, 8));
-        pilotos.add(new Piloto("George Russell", 63, "Mercedes", "Reino Unido", 28, 2, 2));
-        pilotos.add(new Piloto("Lewis Hamilton", 44, "Ferrari", "Reino Unido", 41, 3, 1));
-        pilotos.add(new Piloto("Lando Norris", 4, "McLaren", "Reino Unido", 26, 4, 2));
-        pilotos.add(new Piloto("Charles Leclerc", 16, "Ferrari", "Mónaco", 28, 5, 1));
-        pilotos.add(new Piloto("Max Verstappen", 1, "Red Bull", "Países Bajos", 28, 6, 0));
-        pilotos.add(new Piloto("Oscar Piastri", 81, "McLaren", "Australia", 25, 7, 0));
-        pilotos.add(new Piloto("Isack Hadjar", 6, "Red Bull", "Francia", 21, 8, 0));
-        pilotos.add(new Piloto("Liam Lawson", 30, "Racing Bulls", "Nueva Zelanda", 24, 9, 0));
-        pilotos.add(new Piloto("Pierre Gasly", 10, "Alpine", "Francia", 30, 10, 0));
-        pilotos.add(new Piloto("Franco Colapinto", 43, "Alpine", "Argentina", 23, 12, 0));
+        /*gestor.agregarPiloto(new Piloto("Andrea Kimi Antonelli", 12, "Mercedes", "Italia", 20, 1, 8));
+        gestor.agregarPiloto(new Piloto("George Russell", 63, "Mercedes", "Reino Unido", 28, 2, 2));
+        gestor.agregarPiloto(new Piloto("Lewis Hamilton", 44, "Ferrari", "Reino Unido", 41, 3, 1));
+        gestor.agregarPiloto(new Piloto("Lando Norris", 4, "McLaren", "Reino Unido", 26, 4, 2));
+        gestor.agregarPiloto(new Piloto("Charles Leclerc", 16, "Ferrari", "Mónaco", 28, 5, 1));
+        gestor.agregarPiloto(new Piloto("Max Verstappen", 1, "Red Bull", "Países Bajos", 28, 6, 0));
+        gestor.agregarPiloto(new Piloto("Oscar Piastri", 81, "McLaren", "Australia", 25, 7, 0));
+        gestor.agregarPiloto(new Piloto("Isack Hadjar", 6, "Red Bull", "Francia", 21, 8, 0));
+        gestor.agregarPiloto(new Piloto("Liam Lawson", 30, "Racing Bulls", "Nueva Zelanda", 24, 9, 0));
+        gestor.agregarPiloto(new Piloto("Pierre Gasly", 10, "Alpine", "Francia", 30, 10, 0));
+        gestor.agregarPiloto(new Piloto("Franco Colapinto", 43, "Alpine", "Argentina", 23, 12, 0));
         */    
 
 
@@ -54,19 +53,11 @@ public class Main {
                     lector.nextLine();
                     
                     Piloto piloto = new Piloto(nombre, numero, equipo, pais, edad, posicionActual, cantidadVictorias);
-                    pilotos.add(piloto);
+                    gestor.agregarPiloto(piloto);
                     System.out.println("Piloto registrado exitosamente.");
                     break;
                 case 2:
-                    if (pilotos.isEmpty()) {
-                        System.out.println("");
-                        System.out.println("No hay pilotos registrados.");
-                    } else {
-                        for (Piloto p : pilotos) {
-                            System.out.println("");
-                            p.mostrarInformacion();
-                        }
-                    }
+                    gestor.mostrarPilotos();
                     break;
                 case 3:
                     System.out.println("");
@@ -80,4 +71,3 @@ public class Main {
         lector.close();
     }
 }
-
