@@ -3,16 +3,14 @@ public class Piloto extends Persona {
 
     private int numero;
     private String equipo;
-    private String pais;
     private int posicionActual;
     private int cantidadVictorias;
 
     // constructor: nombre y edad se los pasa a Persona con super
     public Piloto(String nombre, int numero, String equipo, String pais, int edad, int posicionActual, int cantidadVictorias) {
-        super(nombre, edad);
+        super(nombre, edad, pais);
         this.numero = numero;
         this.equipo = equipo;
-        this.pais = pais;
         this.posicionActual = posicionActual;
         this.cantidadVictorias = cantidadVictorias;
     }
@@ -29,12 +27,6 @@ public class Piloto extends Persona {
     }
     public void setEquipo(String equipo) {
         this.equipo = equipo;
-    }
-    public String getPais() {
-        return pais;
-    }
-    public void setPais(String pais) {
-        this.pais = pais;
     }
     public int getPosicionActual() {
         return posicionActual;
@@ -57,7 +49,7 @@ public class Piloto extends Persona {
         System.out.println("Nombre: " + getNombre());
         System.out.println("Número: " + numero);
         System.out.println("Equipo: " + equipo);
-        System.out.println("País: " + pais);
+        System.out.println("País: " + getPais());
         System.out.println("Edad: " + getEdad());
         System.out.println("Posición actual: " + posicionActual);
         System.out.println("Cantidad de victorias: " + cantidadVictorias);
@@ -69,7 +61,7 @@ public class Piloto extends Persona {
     // Devuelve los datos separados por comas para guardarlos en un archivo
 
     public String aLineaArchivo() {
-        return getNombre() + "," + numero + "," + equipo + "," + pais + ","
+        return getNombre() + "," + numero + "," + equipo + "," + getPais() + ","
                 + getEdad() + "," + posicionActual + "," + cantidadVictorias;
     }
 }
