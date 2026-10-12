@@ -15,7 +15,7 @@ public class GestorPilotos {
         pilotos.add(piloto);
     }
 
-    // lista para de pilotos para las búsquedas o guardar en archivo
+    // devuelve la lista de pilotos
     public ArrayList<Piloto> getPilotos() {
         return pilotos;
     }
@@ -26,11 +26,6 @@ public class GestorPilotos {
 
     public boolean estaVacia() {
         return pilotos.isEmpty();
-    }
-
-    // borra todos los pilotos (no se si es necesaria)
-    public void vaciar() {
-        pilotos.clear();
     }
 
     public void mostrarPilotos() {

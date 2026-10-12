@@ -57,11 +57,4 @@ public class Piloto extends Persona {
         System.out.println("=================================");
         System.out.println("");
     }
-
-    // Devuelve los datos separados por comas para guardarlos en un archivo
-
-    public String aLineaArchivo() {
-        return getNombre() + "," + numero + "," + equipo + "," + getPais() + ","
-                + getEdad() + "," + posicionActual + "," + cantidadVictorias;
-    }
 }
