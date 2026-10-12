@@ -1,0 +1,21 @@
+nombreApellido;edad;pais;numero;equipo;posicionActual;cantidadVictorias
+Max Verstappen;27;Paises Bajos;1;Red Bull Racing;1;65
+Lando Norris;25;Reino Unido;4;McLaren;2;9
+Charles Leclerc;27;Monaco;16;Ferrari;3;8
+Oscar Piastri;24;Australia;81;McLaren;4;9
+George Russell;27;Reino Unido;63;Mercedes;5;5
+Lewis Hamilton;40;Reino Unido;44;Ferrari;6;105
+Kimi Antonelli;18;Italia;12;Mercedes;7;0
+Alexander Albon;29;Tailandia;23;Williams;8;0
+Carlos Sainz;30;Espana;55;Williams;9;4
+Fernando Alonso;44;Espana;14;Aston Martin;10;32
+Lance Stroll;26;Canada;18;Aston Martin;11;0
+Yuki Tsunoda;25;Japon;22;Red Bull Racing;12;0
+Pierre Gasly;29;Francia;10;Alpine;13;1
+Esteban Ocon;28;Francia;31;Haas;14;1
+Oliver Bearman;20;Reino Unido;87;Haas;15;0
+Nico Hulkenberg;37;Alemania;27;Sauber;16;0
+Gabriel Bortoleto;20;Brasil;5;Sauber;17;0
+Liam Lawson;23;Nueva Zelanda;30;Racing Bulls;18;0
+Isack Hadjar;20;Francia;6;Racing Bulls;19;0
+Franco Colapinto;22;Argentina;43;Alpine;20;0
