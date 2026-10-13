@@ -2,7 +2,7 @@
 
 Trabajo final del curso de Programación en Java de Cilsa (2026).
 
-Es una aplicación de consola que lee un archivo de texto con pilotos de Fórmula 1, permite buscarlos por país o por equipo, listarlos y guardar en un archivo el resultado de una búsqueda.
+Este proyecto es una aplicación de consola desarrollada en Java bajo el paradigma de Programación Orientada a Objetos (POO). Su propósito principal es permitir la gestión, consulta y filtrado de información sobre pilotos de Formula 1 almacenada en un archivo de texto , integrando estructuras de colecciones, validaciones y manejo de excepciones.
 
 ## Integrantes
 
