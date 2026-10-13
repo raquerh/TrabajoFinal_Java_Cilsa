@@ -39,6 +39,36 @@ public class GestorPilotos {
         }
         System.out.println("Total: " + pilotos.size() + " piloto(s).");
     }
-    
 
+    // Busca pilotos por país (no importa si escribe mayúsculas o minúsculas )
+    public ArrayList<Piloto> buscarPorPais(String pais) {
+
+        ArrayList<Piloto> resultados = new ArrayList<>();
+
+        for (Piloto piloto : pilotos) {
+
+            if (piloto.getPais().equalsIgnoreCase(pais)) {
+                resultados.add(piloto);
+            }
+        }
+
+        return resultados;
+    }
+
+    // Busca pilotos por equipo. Contains para que "red bull"
+    // encuentre "Red Bull Racing". toLowerCase() pasa todo a minúsculas.
+
+    public ArrayList<Piloto> buscarPorEquipo(String equipo) {
+
+        ArrayList<Piloto> resultados = new ArrayList<>();
+
+        for (Piloto piloto : pilotos) {
+
+            if (piloto.getEquipo().toLowerCase().contains(equipo.toLowerCase())) {
+                resultados.add(piloto);
+            }
+        }
+
+        return resultados;
+    }
 }
