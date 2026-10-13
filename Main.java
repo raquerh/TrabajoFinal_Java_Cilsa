@@ -1,69 +1,146 @@
+import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
+
         Scanner lector = new Scanner(System.in);
         GestorPilotos gestor = new GestorPilotos();
-        int opcion;
-        
         GestorArchivos archivos = new GestorArchivos();
-        // Cargamos los pilotos desde el archivo TXT2
-        for (Piloto piloto : archivos.cargarPilotosDesdeArchivo("pilotos_f1.txt")) 
-         {gestor.agregarPiloto(piloto);}
-        //gestor.cargarPilotosDesdeArchivo("pilotos_f1.txt");
 
-        archivos.guardarResultadosEnArchivo(
-          "resultados_prueba.txt",
-        gestor.getPilotos()
-        );
-        
+        for (Piloto piloto : archivos.cargarPilotosDesdeArchivo("pilotos_f1.txt")) {
+            gestor.agregarPiloto(piloto);
+        }
+
+        System.out.println();
+
+        int opcion = 0;
+
         do {
-            System.out.println("===== MENU =====");
-            System.out.println("");
-            System.out.println("1. Registrar piloto");
-            System.out.println("2. Mostrar pilotos");
-            System.out.println("3. Salir");
-            System.out.println("");
-            System.out.print("Seleccione una opción: ");
-            opcion = lector.nextInt();
-            System.out.println("");
-            lector.nextLine(); 
+            mostrarMenu();
+            try {
+                opcion = lector.nextInt();
+                lector.nextLine();
+            } catch (InputMismatchException e) {
+                System.out.println("Error: debe ingresar un número válido.");
+                lector.nextLine();
+                opcion = 0;
+                continue;
+            }
+
             switch (opcion) {
                 case 1:
-                    System.out.print("Ingrese el nombre del piloto: ");
-                    String nombre = lector.nextLine();
-                    System.out.print("Ingrese el número del piloto: ");
-                    int numero = lector.nextInt();
-                    lector.nextLine(); 
-                    System.out.print("Ingrese el equipo del piloto: ");
-                    String equipo = lector.nextLine();
-                    System.out.println("");
-                    System.out.print("Ingrese el país del piloto: ");
-                    String pais = lector.nextLine();
-                    System.out.print("Ingrese la edad del piloto: ");
-                    int edad = lector.nextInt();
-                    System.out.print("Ingrese la posición actual del piloto: ");
-                    int posicionActual = lector.nextInt();
-                    System.out.print("Ingrese la cantidad de victorias del piloto: ");
-                    int cantidadVictorias = lector.nextInt();
-                    lector.nextLine();
-                    
-                    Piloto piloto = new Piloto(nombre, numero, equipo, pais, edad, posicionActual, cantidadVictorias);
-                    gestor.agregarPiloto(piloto);
-                    System.out.println("Piloto registrado exitosamente.");
+                    buscarPorPais(lector, gestor, archivos);
                     break;
                 case 2:
-                    gestor.mostrarPilotos();
+                    buscarPorEquipo(lector, gestor, archivos);
                     break;
                 case 3:
-                    System.out.println("");
+                    System.out.println();
+                    System.out.println("===== LISTADO DE PILOTOS =====");
+                    gestor.mostrarPilotos();
+                    break;
+                case 4:
+                    System.out.println();
                     System.out.println("Programa finalizado.");
                     break;
                 default:
-                    System.out.println("Opción no válida. Intente nuevamente.");
+                    System.out.println("Opción no válida. Elija entre 1 y 4.");
             }
-        } while (opcion != 3);
+        } while (opcion != 4);
 
         lector.close();
     }
+
+    private static void mostrarMenu() {
+        System.out.println();
+        System.out.println("================================");
+        System.out.println("      PILOTOS DE FÓRMULA 1");
+        System.out.println("================================");
+        System.out.println("1. Buscar pilotos por país");
+        System.out.println("2. Buscar pilotos por equipo");
+        System.out.println("3. Listar todos los pilotos");
+        System.out.println("4. Salir");
+        System.out.print("Seleccione una opción: ");
+    }
+
+    // Pide un texto y repite la pregunta mientras esté vacío
+    private static String pedirTexto(Scanner scanner, String mensaje) {
+        String texto;
+
+        do {
+            System.out.print(mensaje);
+            texto = scanner.nextLine().trim();
+
+            if (texto.isEmpty()) {
+                System.out.println("Error: la búsqueda no puede estar vacía.");
+            }
+
+        } while (texto.isEmpty());
+
+        return texto;
+    }
+
+    // ===== BÚSQUEDA 1: POR PAÍS =====
+    private static void buscarPorPais(Scanner lector, GestorPilotos gestor, GestorArchivos archivos) {
+        System.out.println();
+        System.out.println("===== BUSCAR POR PAÍS =====");
+
+        String pais = pedirTexto(lector, "Ingrese el país: ");
+        ArrayList<Piloto> resultados = gestor.buscarPorPais(pais);
+
+        mostrarYGuardar(lector, archivos, resultados, "pais_" + pais);
+
+    }
+
+    // ===== BÚSQUEDA 2: POR EQUIPO =====
+    private static void buscarPorEquipo(Scanner lector, GestorPilotos gestor, GestorArchivos archivos) {
+        System.out.println();
+        System.out.println("===== BUSCAR POR EQUIPO =====");
+
+        String equipo = pedirTexto(lector, "Ingrese el equipo: ");
+        ArrayList<Piloto> resultados = gestor.buscarPorEquipo(equipo);
+
+        mostrarYGuardar(lector, archivos, resultados, "equipo_" + equipo);
+        
+    }
+    // Muestra los resultados y pregunta si se quieren guardar
+    private static void mostrarYGuardar(Scanner lector, GestorArchivos archivos,
+                                    ArrayList<Piloto> resultados,
+                                    String nombreConsulta) {
+    // Caso: no se encontró nada                                    
+    if (resultados.isEmpty()) {
+        System.out.println("No se encontraron pilotos con ese dato.");
+        return;
+    }
+
+    System.out.println("Se encontraron " + resultados.size() + " piloto(s):");
+    System.out.println();
+    
+    for (Piloto piloto : resultados) {
+        piloto.mostrarInformacion();
+    }
+    // Preguntamos si desea guardar (repite hasta recibir s o n)
+    String respuesta;
+    do {
+        System.out.print("¿Desea guardar los resultados en un archivo? (s/n): ");
+        respuesta = lector.nextLine().trim();
+
+        if (!respuesta.equalsIgnoreCase("s")
+                && !respuesta.equalsIgnoreCase("n")) {
+            System.out.println("Error: escriba 's' para sí o 'n' para no.");
+        }
+
+    } while (!respuesta.equalsIgnoreCase("s")
+            && !respuesta.equalsIgnoreCase("n"));
+
+    if (respuesta.equalsIgnoreCase("s")) {
+        // Armamos el nombre: "pais_Reino Unido" -> "resultados_pais_reino_unido.txt"
+        String nombreArchivo =
+                "resultados_" + nombreConsulta.toLowerCase().replace(" ", "_") + ".txt";
+        archivos.guardarResultadosEnArchivo(nombreArchivo, resultados);
+    }
+}
+
 }
