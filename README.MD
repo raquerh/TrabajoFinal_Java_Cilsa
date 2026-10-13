@@ -12,6 +12,14 @@ Es una aplicación de consola que lee un archivo de texto con pilotos de Fórmul
 | Sabrina Rodriguez | Menú principal, búsquedas y validaciones |
 | Raquel Rodriguez Herlein | Modelo POO y estructura de datos |
 
+## Herramientas
+
+- Java
+- Eclipse IDE
+- Visual Studio Code
+- Git y GitHub para trabajar en ramas y unir las partes
+
+
 ## Cómo ejecutarlo
 
 Hace falta tener instalado el JDK.
